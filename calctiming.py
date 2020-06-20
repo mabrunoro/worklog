@@ -4,6 +4,7 @@ import os
 import datetime
 import json
 import argparse
+import pygments
 from pygments import highlight
 from pygments.lexers import JsonLexer
 from pygments.formatters import Terminal256Formatter
@@ -19,6 +20,7 @@ def tempo(t):
 
 
 def main(filename, last=True, description=True):
+    day = None
     with open(filename) as f:
         lines = f.readlines()
         last_issue = []
@@ -47,7 +49,7 @@ def main(filename, last=True, description=True):
                                     ret[day][last_issue[-1]]['description'].append(last_issue[1])
                         last_issue = a
                         start = + 1
-    return ret
+    return {day:ret[day]} if last else ret
 
 FILEHELPER = """Input file. A valid file will be something like:
 # 18-06-20
@@ -77,19 +79,61 @@ Markdown listing is also allowed:
 
 if(__name__ == "__main__"):
     parser = argparse.ArgumentParser(description='Daily worklog computing.', usage='use "%(prog)s --help" for more information', formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument('--summarized','-s',help='No description, short version.')
-    parser.add_argument('--sort','-k',help='Sort tasks on Output.')
-    parser.add_argument('--file','-f',help=FILEHELPER)
-    parser.add_argument('--nocolor','-n',help='No colored output.')
+    parser.add_argument('-s','--summarized',help='No description, short version.', action='store_true')
+    parser.add_argument('-k','--sort',help='Sort tasks on Output.', action='store_true')
+    parser.add_argument('-f','--file',help=FILEHELPER)
+    parser.add_argument('-n','--nocolor',help='No colored output.', action='store_true')
+    parser.add_argument('-l','--lastday',help='Print only last day worklog.', action='store_true')
+    
     args = parser.parse_args()
-    filename = sys.argv[1] if len(sys.argv) > 1 else f'{os.path.dirname(__file__)}/TIMING.md'
-    description = args.summarized is None
-    sort_keys = args.sort is not None
-    colored = args.nocolor is None
-    m = main(filename=filename, description=description)
+    print(args)
+    filename = args.file if args.file is not None else f'{os.path.dirname(__file__)}/TIMING.md'
+    description = not args.summarized
+    sort_keys = args.sort
+    nocolored = args.nocolor
+    lastday = args.lastday
+    m = main(filename=filename, last=lastday, description=description)
     json_str = json.dumps(m, indent=4, sort_keys=sort_keys)
 
-    if(colored):
-        print(highlight(json_str, JsonLexer(), Terminal256Formatter(style='monokai')))
-    else:
+    if(nocolored):
         print(json_str)
+    else:
+        print(highlight(json_str, JsonLexer(), Terminal256Formatter(style='monokai')))
+
+# STYLES = [
+#     'default',
+#     'emacs'   ,
+#     'friendly',
+#     'colorful',
+#     'autumn'  ,
+#     'murphy'  ,
+#     'manni'   ,
+#     'monokai' ,
+#     'perldoc' ,
+#     'pastie'  ,
+#     'borland' ,
+#     'trac'    ,
+#     'native'  ,
+#     'fruity'  ,
+#     'bw'      ,
+#     'vim'     ,
+#     'vs'      ,
+#     'tango'   ,
+#     'rrt'     ,
+#     'xcode'   ,
+#     'igor'    ,
+#     'paraiso-light',
+#     'paraiso-dark',
+#     'lovelace',
+#     'algol'   ,
+#     'algol_nu',
+#     'arduino' ,
+#     'rainbow_dash',
+#     'abap'    ,
+#     'solarized-dark',
+#     'solarized-light',
+#     'sas'        ,
+#     'stata'      ,
+#     'stata-light',
+#     'stata-dark'
+# ]
