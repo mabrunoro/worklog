@@ -19,12 +19,17 @@ Expected pattern should be something like:
 17:15 -- TASK 3
 18:59 -- DESCRIPTION 5 -- TASK 4
 19:59 --
+```
+
+Markdown listing is also allowed:
+
+```
 # 19-06-20
-08:55 -- DESCRIPTION 0 -- TASK 0
-11:10 -- TASK 1
-13:08 -- lunch
-14:22 -- DESCRIPTION 2 -- TASK 0
-16:39 -- TASK 3
-16:54 -- DESCRIPTION 4 -- TASK 1
-18:35 --
+- 08:55 -- DESCRIPTION 0 -- TASK 0
+- 11:10 -- TASK 1
+- 13:08 -- lunch
+- 14:22 -- DESCRIPTION 2 -- TASK 0
+- 16:39 -- TASK 3
+- 16:54 -- DESCRIPTION 4 -- TASK 1
+- 18:35 --
 ```
