@@ -89,7 +89,7 @@ if(__name__ == "__main__"):
     print(args)
     filename = args.file if args.file is not None else f'{os.path.dirname(__file__)}/TIMING.md'
     description = not args.summarized
-    sort_keys = args.sort
+    sort_keys = args.sortkeys
     nocolored = args.nocolor
     lastday = args.lastday
     m = main(filename=filename, last=lastday, description=description)
