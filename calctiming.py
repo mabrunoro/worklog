@@ -79,8 +79,8 @@ Markdown listing is also allowed:
 
 if(__name__ == "__main__"):
     parser = argparse.ArgumentParser(description='Daily worklog computing.', usage='use "%(prog)s --help" for more information', formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument('-s','--summarized',help='No description, short version.', action='store_true')
-    parser.add_argument('-k','--sort',help='Sort tasks on Output.', action='store_true')
+    parser.add_argument('-s','--summarized',help='No descriptions, short version.', action='store_true')
+    parser.add_argument('-k','--sortkeys',help='Sort tasks on Output.', action='store_true')
     parser.add_argument('-f','--file',help=FILEHELPER)
     parser.add_argument('-n','--nocolor',help='No colored output.', action='store_true')
     parser.add_argument('-l','--lastday',help='Print only last day worklog.', action='store_true')
