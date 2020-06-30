@@ -33,3 +33,15 @@ Markdown listing is also allowed:
 - 16:54 -- DESCRIPTION 4 -- TASK 1
 - 18:35 --
 ```
+# TODO
+
+Include a system to compute normal and extra hours. This means specifying globally how many hours until normal and perhaps daily normal hours for each project. For instance:
+
+```
+$ 8:00 (Globally, normal hours)
+
+# Someday
+$ HDM -- 6:00
+```
+
+Then if more than 6h is registered on someday, the exceeding hours can be deduced and shown in another way.
