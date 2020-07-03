@@ -35,6 +35,7 @@ Markdown listing is also allowed:
 ```
 # TODO
 
+## #1
 Include a system to compute normal and extra hours. This means specifying globally how many hours until normal and perhaps daily normal hours for each project. For instance:
 
 ```
@@ -45,3 +46,6 @@ $ HDM -- 6:00
 ```
 
 Then if more than 6h is registered on someday, the exceeding hours can be deduced and shown in another way.
+
+## #2
+Split tasks related to multiple issues
