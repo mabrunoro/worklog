@@ -49,3 +49,6 @@ Then if more than 6h is registered on someday, the exceeding hours can be deduce
 
 ## #2
 Split tasks related to multiple issues
+
+## #3
+Improve output to highlight days and tasks
