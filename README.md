@@ -52,3 +52,6 @@ Split tasks related to multiple issues
 
 ## #3
 Improve output to highlight days and tasks
+
+## #4
+Group same projects' tasks
